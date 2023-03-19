@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const MainWrapper = styled.div`
 
-width: 440px;
+width: 550px;
   margin: 10px auto;
   text-align: center;
   overflow: hidden;

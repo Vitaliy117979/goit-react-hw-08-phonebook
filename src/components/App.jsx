@@ -1,30 +1,55 @@
-import { Form } from 'components/Form/Form';
-import { ContactList } from './ContactList/ContactList';
-import { MainWrapper } from './MainWrapper.styled';
-import { Filter } from './Filter/Filter';
-import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
-import { useDispatch, } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {  Route, Routes } from 'react-router-dom';
+import { Home } from 'pages/Home';
+import { Register } from 'pages/Register/Register';
+import { Login } from 'pages/Login';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { ROUTES } from 'utils/routes';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import { Contacts } from 'pages/Contacts';
+import { refreshUser } from 'redux/auth/operations';
+
+
 
 export const App = () => {
   const dispatch = useDispatch();
 
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser())
   }, [dispatch]);
+  const { HOME, CONTACTS, REGISTER, LOGIN, } = ROUTES;
 
   return (
-    <MainWrapper>
-      <Toaster position="top-right" reverseOrder={false} />
 
-      <h1>Phonebook</h1>
-      <Form />
-      <h2>Contacts</h2>
-      <Filter />
+
+    <Routes>
+      <Route path={HOME} element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route
+          path={REGISTER}
+          element={
+            <RestrictedRoute redirectTo={CONTACTS} component={<Register />} />
+          }
+        />
+        <Route
+          path={LOGIN}
+          element={
+            <RestrictedRoute redirectTo={CONTACTS} component={<Login />} />
+          }
+        />
+        <Route
+          path={CONTACTS}
+          element={
+            <PrivateRoute redirectTo={LOGIN} component={<Contacts />} />
+          }
+        />
+      </Route>
   
-      <ContactList />
-    </MainWrapper>
+      
+    </Routes>
+
   );
 };

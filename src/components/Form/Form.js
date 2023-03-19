@@ -1,14 +1,15 @@
+import { Button } from 'components/Contact/Contact.styled';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-
-import { Button } from 'components/Contact/Contact.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { postContact } from '../../redux/operations';
-import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/contacts/selectors';
+import { postContact } from '../../redux/contacts/operations';
+import { Text, Input
+ } from './Form.styled';
 
 export const Form = () => {
   const [name, setName] = useState('');
-  const [phone, setNumber] = useState('');
+  const [number, setNumber] = useState('');
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
@@ -35,7 +36,7 @@ export const Form = () => {
     }
     e.preventDefault();
 
-    dispatch(postContact({name, phone}));
+    dispatch(postContact({name, number}));
     reset();
   };
 
@@ -50,8 +51,9 @@ export const Form = () => {
 
       <form onSubmit={onHandleSubmit}>
         <label>
-          <p>name</p>
-          <input
+          <Text>name</Text>
+          <Input
+
             onChange={onHandlerChange}
             type="text"
             name="name"
@@ -62,19 +64,20 @@ export const Form = () => {
           />
         </label>
         <label>
-          <p>Number</p>
-          <input
+          <Text>Number</Text>
+          <Input
+
             onChange={onHandlerChange}
             type="tel"
             name="number"
-            value={phone}
+            value={number}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            title="number number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
         </label>
-
-        <Button type="submit">Add contact</Button>
+<div> <Button type="submit">Add contact</Button></div>
+       
       </form>
     </>
   );

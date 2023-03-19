@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-
   background: url(https://html5book.ru/wp-content/uploads/2015/07/background39.png);
-
 
   text-decoration: none;
   display: inline-block;
@@ -20,20 +18,25 @@ export const Button = styled.button`
   font-weight: 600;
   color: #524f4e;
   background: white;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-  transition: .3s;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
 
-:hover {
-  background: #2EE59D;
-  box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
-  color: white;
-  transform: translateY(-7px);
-}
-
-`
-
+  :hover,
+  :focus,
+  :active {
+    background: #2ee59d;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: white;
+    transform: translateY(-7px);
+  }
+  :disabled {
+    background-color: gray;
+    color: #000;
+    cursor: not-allowed;
+  }
+`;
 
 export const Info = styled.p`
-font-size: 16px;
-font-weight: 500;
-`
+  font-size: 16px;
+  font-weight: 500;
+`;
