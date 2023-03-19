@@ -4,7 +4,6 @@ import { Form } from 'components/Form/Form';
 import React, { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from 'redux/auth/operations';
 import { fetchContacts } from 'redux/contacts/operations';
 
 

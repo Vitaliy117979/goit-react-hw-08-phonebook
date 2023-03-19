@@ -1,4 +1,3 @@
-import { Text } from 'components/Form/Form.styled';
 import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 
@@ -10,7 +9,7 @@ export const Header = () => {
   const { user, isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
-  const { HOME, CONTACTS, REGISTER, LOGIN, NOT_FOUND } = ROUTES;
+  const { HOME, CONTACTS, REGISTER, LOGIN, } = ROUTES;
   return (
     <HeaderStyled>
       <nav>
