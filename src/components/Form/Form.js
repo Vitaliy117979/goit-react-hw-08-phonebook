@@ -4,8 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/contacts/selectors';
 import { postContact } from '../../redux/contacts/operations';
-import { Text, Input
- } from './Form.styled';
+import { Text, Input } from './Form.styled';
 
 export const Form = () => {
   const [name, setName] = useState('');
@@ -30,13 +29,13 @@ export const Form = () => {
   const notify = () => toast(`Sorry, ${name} is already in contacts.`);
 
   const onHandleSubmit = e => {
+    e.preventDefault();
     if (contacts.some(contact => contact.name === name)) {
       notify(name);
+      console.log(1);
       return;
     }
-    e.preventDefault();
-
-    dispatch(postContact({name, number}));
+    dispatch(postContact({ name, number }));
     reset();
   };
 
@@ -47,13 +46,12 @@ export const Form = () => {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
 
       <form onSubmit={onHandleSubmit}>
         <label>
           <Text>name</Text>
           <Input
-
             onChange={onHandlerChange}
             type="text"
             name="name"
@@ -66,7 +64,6 @@ export const Form = () => {
         <label>
           <Text>Number</Text>
           <Input
-
             onChange={onHandlerChange}
             type="tel"
             name="number"
@@ -76,8 +73,10 @@ export const Form = () => {
             required
           />
         </label>
-<div> <Button type="submit">Add contact</Button></div>
-       
+        <div>
+          {' '}
+          <Button type="submit">Add contact</Button>
+        </div>
       </form>
     </>
   );

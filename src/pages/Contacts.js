@@ -16,7 +16,8 @@ export const Contacts = () => {
   }, [dispatch]);
   return (
     <>
-      <Toaster/>
+      <Toaster  position="top-center"
+  reverseOrder={false}/>
       <h1>Phonebook</h1>
       <Form />
       <h2>Contacts</h2>
